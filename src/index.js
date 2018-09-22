@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { AppLoading } from 'expo'
 import { MainStack } from './components/nav'
 
@@ -14,6 +14,6 @@ const styles = StyleSheet.create({
 
 export default class Main extends Component {
   render () {
-    return <MainStack />
+    return <MainStack />      
   }
 }

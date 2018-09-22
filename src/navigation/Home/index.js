@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 class HomeScreen extends Component {
-  static navigationOptions = {
-    title: 'Home'
-  }
+  static navigationOptions = ({ navigation }) => ({
+    title: 'Home',    
+    drawerIcon: ({ tintColor }) => {
+      <FontAwesome name="home" color={tintColor} />
+    }
+  })
+
   render() {
     return (
       <View>

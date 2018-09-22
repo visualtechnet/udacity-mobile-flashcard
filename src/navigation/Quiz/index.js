@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 class QuizScreen extends Component {
   static navigationOptions = {
-    title: 'Quiz'
+    title: 'Quiz',
+    drawerLabel: 'Quiz',
+    drawerIcon: ({ tintColor }) => {
+      <MaterialIcons name="question-answer" color={tintColor} />
+    }
   }
 
   render() {
