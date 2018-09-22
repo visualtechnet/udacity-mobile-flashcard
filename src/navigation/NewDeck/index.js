@@ -2,7 +2,11 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 
-class NewDeck extends Component {
+class NewDeckScreen extends Component {
+  static navigationOptions = {
+    title: 'New Deck'
+  }
+
   render() {
     return (
       <View>
@@ -19,4 +23,6 @@ const mapStateToProps = state => ({
   
 })
 
-export default connect(mapStateToProps)(NewDeck)
+NewDeckScreen = connect(mapStateToProps)(NewDeckScreen)
+
+export { NewDeckScreen }

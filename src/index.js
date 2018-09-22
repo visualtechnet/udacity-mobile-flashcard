@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import { AppLoading } from 'expo'
-import { Home } from './navigation'
+import { MainStack } from './components/nav'
 
 const styles = StyleSheet.create({
   container: {
@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
 
 export default class Main extends Component {
   render () {
-    return <Home />
+    return <MainStack />
   }
 }
-

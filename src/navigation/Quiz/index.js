@@ -2,12 +2,16 @@ import React, { Component } from 'react'
 import { View, Text } from 'react-native'
 import { connect } from 'react-redux'
 
-class Quiz extends Component {
+class QuizScreen extends Component {
+  static navigationOptions = {
+    title: 'Quiz'
+  }
+
   render() {
     return (
       <View>
         <Text>
-          Hello Quiz
+          Hello QuizScreen
         </Text>
       </View>
     )
@@ -19,4 +23,6 @@ const mapStateToProps = state => ({
   
 })
 
-export default connect(mapStateToProps)(Quiz)
+QuizScreen = connect(mapStateToProps)(QuizScreen)
+
+export { QuizScreen }

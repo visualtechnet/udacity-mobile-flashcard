@@ -15,7 +15,7 @@
   },
   "parser": "babel-eslint",
   "rules": {
-    "semi": [0,"never"],
+    "semi": [0, "never"],
     "react/display-name": [0]
   }
 }
