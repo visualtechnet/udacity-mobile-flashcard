@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
 import { AppLoading } from 'expo'
+import { Home } from './navigation'
 
 const styles = StyleSheet.create({
   container: {
@@ -13,9 +14,7 @@ const styles = StyleSheet.create({
 
 export default class Main extends Component {
   render () {
-    return (<View>
-      <Text>adsflkasflsadjf</Text>
-    </View>)
+    return <Home />
   }
 }
 

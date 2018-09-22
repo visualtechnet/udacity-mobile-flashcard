@@ -1,14 +1,14 @@
-import { LOAD_HOME } from '../../utils/constants'
+import { ADD_QUESTION } from '../../utils/constants'
 
 const initialSettings = {
 
 }
 
-export const home = (state = initialSettings, actions) => {
+export const newQuestion = (state = initialSettings, actions) => {
   const { type, data } = actions
   
   switch (type) {
-    case LOAD_HOME:
+    case ADD_QUESTION:
       return {
         ...state,        
       }  
