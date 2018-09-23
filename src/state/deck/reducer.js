@@ -1,7 +1,8 @@
-import { LOAD_DECK } from '../../utils/constants'
+import { LOAD_DECK, GET_DECK_QUESTIONS } from '../../utils/constants'
 
 const initialSettings = {
-  decks: []
+  decks: [],
+  deckWithQuestions: []
 }
 
 export const deck = (state = initialSettings, actions) => {
@@ -12,7 +13,12 @@ export const deck = (state = initialSettings, actions) => {
       return {
         ...state,   
         decks: data     
-      }  
+      }
+    case GET_DECK_QUESTIONS: 
+      return {
+        ...state,
+        deckWithQuestions: data
+      }
     default:
       return state
   }

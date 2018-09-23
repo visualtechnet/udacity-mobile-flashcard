@@ -1,6 +1,6 @@
 [
   { 
-    "id": 1,
+    "id": "1",
     "question": "What's your favorite color?",
     "choices":[
       "Green",
@@ -9,20 +9,22 @@
       "Orange",
       "Pink",
       "Purple"
-    ]
+    ],
+    "answer": "Green"
   },
   { 
-    "id": 2,
+    "id": "2",
     "question": "What's your favorite season?",
     "choices":[
       "Winter",
       "Spring",
       "Summer",
       "Fall"
-    ]
+    ],
+    "answer": "Spring"
   },
   { 
-    "id": 3,
+    "id": "3",
     "question": "What do you do at parties?",
     "choices":[
       "Bring food for everyone",
@@ -31,18 +33,20 @@
       "I take selfies and make sure everyone knows i'm there",
       "I jump into party games",
       "I try to start a conversation with someone"
-    ]
+    ],
+    "answer": "Bring food for everyone"
   },
   { 
-    "id": 4,
+    "id": "4",
     "question": "True or false? Mice live for up to 10 years.",
     "choices":[
       "True",
       "False"
-    ]
+    ],
+    "answer": "True"
   },
   { 
-    "id": 5,
+    "id": "5",
     "question": "Who's your favorite hero?",
     "choices":[
       "Batman",
@@ -50,6 +54,7 @@
       "Wonder Woman",
       "Flash",
       "Ant Man"
-    ]
+    ],
+    "answer": "Batman"
   }
 ]

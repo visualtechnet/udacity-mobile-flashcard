@@ -3,3 +3,5 @@ export const LOAD_DECK = 'LOAD_DECK'
 
 export const ADD_QUIZ = 'ADD_QUIZ'
 export const ADD_DECK = 'ADD_DECK'
+
+export const GET_DECK_QUESTIONS = 'GET_DECK_QUESTIONS'

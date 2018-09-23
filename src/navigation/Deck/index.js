@@ -1,49 +1,49 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import { connect } from 'react-redux'
 import Foundation from '@expo/vector-icons/Foundation';
+import { bindActionCreators } from 'redux';
+import { getDeckWithQuestions } from '../../state/deck/actions'
 
-class DeckScreen extends Component {
-  static navigationOptions = {
-    title: 'Deck',    
-    drawerLabel: 'Deck',
-    drawerIcon: ({ tintColor }) => {
-      <Foundation name="list" color={tintColor} />
-    }
-  }
-
-  loadQuizzesForDeck = id => {
-    const { decks, quizzes } = this.props
-
-    const deck = decks.find(deck => decks.id === id)
-    const quizzes = quizzes
-
-    
-  }
-
+class DeckScreen extends Component {    
   componentDidMount() {
-    const { navigation } = this.props
+    const { navigation, getDeckWithQuestions, decks, quizzes } = this.props
+    console.log('adsfafasdfasfdasdfsadf')
+    console.log(' ======== Test =========== ', navigation.getParam('id', '0'), decks, quizzes)
 
-    loadQuizzesByDeck(navigation.getParam("key"))
+    getDeckWithQuestions(navigation.getParam("key"), decks, quizzes)
+  }
+
+  renderDeckWithQuestions = () => {
+    const { navigation, deckWithQuestions } = this.props    
+    const quizzesCount = deckWithQuestions.quizzes ? deckWithQuestions.quizzes.length : 0
+        
+    return (
+      <View>
+        <Text>{ deckWithQuestions.id }</Text>
+        <Text>{ deckWithQuestions.title }</Text>
+        <Text>{`No of cards: ${quizzesCount}`}</Text>
+        <Button title="Add New Question" onPress={() => navigation.navigate('NewQuiz', { key: deckWithQuestions.id })}></Button>
+        <Button title="Start Quiz" onPress={() => navigation.navigate('Card', { key: deckWithQuestions.id })}></Button>
+      </View>
+    )
   }
 
   render() {
-    return (
-      <View>
-        <Text>
-          Hello DeckScreen
-        </Text>
-      </View>
-    )
-
+    return this.renderDeckWithQuestions()
   }
 }
 
 const mapStateToProps = state => ({
   decks: state.deck.decks,
-  quizzes: state.quiz.quizzes
+  quizzes: state.quiz.quizzes,
+  deckWithQuestions: state.deck.deckWithQuestions
 })
 
-DeckScreen = connect(mapStateToProps)(DeckScreen)
+const mapDispatchToActions = dispatch => bindActionCreators({
+  getDeckWithQuestions 
+}, dispatch)
+
+DeckScreen = connect(mapStateToProps, mapDispatchToActions)(DeckScreen)
 
 export { DeckScreen }

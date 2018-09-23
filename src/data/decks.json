@@ -4,9 +4,9 @@
     "title": "Geology",
     "dateCreated": "09/22/2018",
     "quizzes": [
-      1,
-      3,
-      5
+      "1",
+      "3",
+      "5"
     ]
   },
   {
@@ -14,8 +14,8 @@
     "title": "Biology",
     "dateCreated": "09/21/2018",
     "quizzes": [
-      1,
-      2
+      "1",
+      "2"
     ]
   },
   {
@@ -23,10 +23,10 @@
     "title": "Human Anatomy",
     "dateCreated": "09/21/2018",
     "quizzes": [
-      1,
-      2,
-      3,
-      4
+      "1",
+      "2",
+      "3",
+      "4"
     ]
   },
   {
@@ -34,10 +34,10 @@
     "title": "Physics",
     "dateCreated": "09/21/2018",
     "quizzes": [
-      1,
-      2,
-      3,        
-      5
+      "1",
+      "2",
+      "3",        
+      "5"
     ]
   },
   {
@@ -45,9 +45,9 @@
     "title": "Engineering",
     "dateCreated": "09/21/2018",
     "quizzes": [        
-      3,
-      4,
-      5
+      "3",
+      "4",
+      "5"
     ]
   }  
 ]

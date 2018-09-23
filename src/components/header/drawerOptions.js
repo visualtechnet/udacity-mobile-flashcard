@@ -1,5 +1,5 @@
 const drawerOptions = () => {  
-  const drawer = Object.assign({}, {
+  const drawer = Object.assign({}, {    
     drawerTintColor: '#F9FDCE',
     drawerTitleStyle: {
       fontWeight: 'bold'

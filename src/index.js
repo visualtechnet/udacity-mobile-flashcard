@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { AppLoading } from 'expo'
-import { MainStack } from './components/nav'
+import { MainDrawer } from './components/nav'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { loadQuiz } from './state/quiz/actions'
@@ -27,7 +27,7 @@ class Main extends Component {
   }
 
   render () {
-    return <MainStack />      
+    return <MainDrawer />      
   }
 }
 

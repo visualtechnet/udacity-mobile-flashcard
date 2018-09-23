@@ -1,27 +1,15 @@
-import { HomeScreen, DeckScreen, NewDeckScreen, NewQuestionScreen, QuizScreen } from '../../../navigation'
 import { createStackNavigator } from 'react-navigation';
-import { headerOptions } from '../../header'
-import { mainDrawer } from '../mainDrawer';
+import { stackWithNav } from '../../header'
+import { HomeStack, CardStack, DeckStack, NewDeckStack, NewQuizStack } from '../stacks'
 
 const MainStack = createStackNavigator({
-  Home: {
-    screen: mainDrawer
-  },
-  Deck: {
-    screen: DeckScreen
-  }, 
-  NewDeck: {
-    screen: NewDeckScreen
-  },
-  Quiz: {
-    screen: QuizScreen
-  },
-  NewQuestion: {
-    screen: NewQuestionScreen
-  }
+  Home: HomeStack,  
+  NewDeck: NewDeckStack,  
+  NewQuiz: NewQuizStack,
+  Card: CardStack,
+  Deck: DeckStack
 }, {
-  initialRouteName: 'Home',  
-  navigationOptions: headerOptions
+  initialRouteName: 'Home'
 })
 
 export { MainStack }
