@@ -12,6 +12,21 @@ class DeckScreen extends Component {
     }
   }
 
+  loadQuizzesForDeck = id => {
+    const { decks, quizzes } = this.props
+
+    const deck = decks.find(deck => decks.id === id)
+    const quizzes = quizzes
+
+    
+  }
+
+  componentDidMount() {
+    const { navigation } = this.props
+
+    loadQuizzesByDeck(navigation.getParam("key"))
+  }
+
   render() {
     return (
       <View>
@@ -25,7 +40,8 @@ class DeckScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-  
+  decks: state.deck.decks,
+  quizzes: state.quiz.quizzes
 })
 
 DeckScreen = connect(mapStateToProps)(DeckScreen)

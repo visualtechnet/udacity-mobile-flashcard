@@ -1,7 +1,7 @@
 import { LOAD_QUIZ } from '../../utils/constants'
 
 const initialSettings = {
-
+  quizzes: []
 }
 
 export const quiz = (state = initialSettings, actions) => {
@@ -10,7 +10,8 @@ export const quiz = (state = initialSettings, actions) => {
   switch (type) {
     case LOAD_QUIZ:
       return {
-        ...state,        
+        ...state,
+        quizzes: data
       }  
     default:
       return state

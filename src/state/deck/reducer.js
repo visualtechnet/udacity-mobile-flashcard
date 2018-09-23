@@ -1,7 +1,7 @@
 import { LOAD_DECK } from '../../utils/constants'
 
 const initialSettings = {
-
+  decks: []
 }
 
 export const deck = (state = initialSettings, actions) => {
@@ -10,7 +10,8 @@ export const deck = (state = initialSettings, actions) => {
   switch (type) {
     case LOAD_DECK:
       return {
-        ...state,        
+        ...state,   
+        decks: data     
       }  
     default:
       return state

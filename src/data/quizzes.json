@@ -1,0 +1,55 @@
+[
+  { 
+    "id": 1,
+    "question": "What's your favorite color?",
+    "choices":[
+      "Green",
+      "Teal",
+      "Blue",
+      "Orange",
+      "Pink",
+      "Purple"
+    ]
+  },
+  { 
+    "id": 2,
+    "question": "What's your favorite season?",
+    "choices":[
+      "Winter",
+      "Spring",
+      "Summer",
+      "Fall"
+    ]
+  },
+  { 
+    "id": 3,
+    "question": "What do you do at parties?",
+    "choices":[
+      "Bring food for everyone",
+      "Play DJ, I bring the music",
+      "I make friends with the house pets",
+      "I take selfies and make sure everyone knows i'm there",
+      "I jump into party games",
+      "I try to start a conversation with someone"
+    ]
+  },
+  { 
+    "id": 4,
+    "question": "True or false? Mice live for up to 10 years.",
+    "choices":[
+      "True",
+      "False"
+    ]
+  },
+  { 
+    "id": 5,
+    "question": "Who's your favorite hero?",
+    "choices":[
+      "Batman",
+      "Superman",
+      "Wonder Woman",
+      "Flash",
+      "Ant Man"
+    ]
+  }
+]

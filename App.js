@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
@@ -13,7 +13,7 @@ const store = createStore(
 );
 
 
-export default class App extends React.Component {
+export default class App extends PureComponent {
   render() {
     return (
       <Provider store={store}>
