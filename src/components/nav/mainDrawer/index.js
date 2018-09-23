@@ -1,12 +1,10 @@
 import { createDrawerNavigator } from 'react-navigation';
-import { drawerOptions } from '../../header';
-import { MainStack } from '../mainStack';
+import { HomeDrawer } from '../drawer'
 
 const MainDrawer = createDrawerNavigator({
-  Dashboard: MainStack
-}, {
-  initialRouteName: 'Dashboard',
-  navigationOptions: drawerOptions
+  Dashboard: HomeDrawer
+}, { 
+  initialRouteName: 'Dashboard' 
 })
 
 export { MainDrawer }

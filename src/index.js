@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { AppLoading } from 'expo'
 import { MainDrawer } from './components/nav'
 import { connect } from 'react-redux'
@@ -19,15 +19,13 @@ const styles = StyleSheet.create({
 
 class Main extends Component {  
   componentDidMount() {
-    const { loadQuiz, loadDecks } = this.props
-    
-    console.log('Loading Quizzes and Decks')
+    const { loadQuiz, loadDecks } = this.props  
     loadQuiz()
     loadDecks()
   }
 
   render () {
-    return <MainDrawer />      
+    return <MainDrawer />
   }
 }
 

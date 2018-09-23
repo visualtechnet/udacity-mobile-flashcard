@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, TouchableHighlight } from 'react-native'
+import { View, Text, FlatList, TouchableOpacity, StatusBar } from 'react-native'
 import { connect } from 'react-redux'
 import { DeckItem, DeckTitle, DeckCount } from './style'
-import { stackWithNav } from '../../components/header';
 
 class HomeScreen extends Component {  
   viewDeck = item => {
@@ -13,23 +12,21 @@ class HomeScreen extends Component {
 
   deckView = ({ item }) => {    
     return (
-      <TouchableHighlight id={item.id} onPress={item => this.viewDeck(item)} tintColor="#fff">
+      <TouchableOpacity id={item.id} onPress={item => this.viewDeck(item)} tintColor="#fff">
         <DeckItem>
           <DeckTitle>{ item.title }</DeckTitle>
           <DeckCount>{ item.quizzes.length }</DeckCount>
         </DeckItem>
-      </TouchableHighlight>
+      </TouchableOpacity>
     )
   }
 
   render() {
     const { decks, quizzes, navigation } = this.props
 
-    // console.log('Stack With Nav Options', stackWithNav(navigation))    
-    // console.log('New Object Assign', Object.assign({}, stackWithNav(navigation), { headerTitle: 'Home' }))
-
     return (
       <View>
+        <StatusBar barStyle="light-content" />
         {
           decks && decks.length > 0 && (
             <FlatList data={decks} 

@@ -1,8 +1,11 @@
 import { createStackNavigator } from 'react-navigation'
 import { HomeScreen } from '../../../navigation'
+import { stackWithNav } from '../../header';
 
-const HomeStack = createStackNavigator({ HomeScreen })
+const HomeStack = createStackNavigator({ HomeScreen }, { headerMode: 'none' })
 
-HomeStack.navigationOptions = Object.assign({}, { headerTitle: 'Home' })
+HomeStack.navigationOptions = ({ navigation }) => {
+    return stackWithNav('Home', navigation)
+}
 
 export { HomeStack }

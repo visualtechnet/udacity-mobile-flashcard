@@ -2,8 +2,10 @@ import { createStackNavigator } from 'react-navigation'
 import { NewQuizScreen } from '../../../navigation'
 import { stackWithNav } from '../../header';
 
-const NewQuizStack = createStackNavigator({ NewQuizScreen })
+const NewQuizStack = createStackNavigator({ NewQuizScreen }, { headerMode: 'none' })
 
-NewQuizStack.navigationOptions =  Object.assign({}, { headerTitle: 'New Quiz' })
+NewQuizStack.navigationOptions =  ({ navigation }) => {
+  return stackWithNav('New Quiz', navigation)
+}
 
 export { NewQuizStack }

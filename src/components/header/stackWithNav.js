@@ -2,9 +2,10 @@ import React from 'react'
 import { Ionicons, Foundation } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native'
 
-const stackWithNav = ({ navigation }) => {
+const stackWithNav = (title = 'Sample', navigation) => {
   const { routeName } = navigation.state  
-  const header = Object.assign({}, {
+  
+  return Object.assign({}, {
     headerStyle: {
       backgroundColor: '#0C202B'
     },
@@ -12,12 +13,10 @@ const stackWithNav = ({ navigation }) => {
     headerTitleStyle: {
       fontWeight: 'bold'
     },    
-    headerTitle: "Sample",
+    headerTitle: title,    
     headerLeft: routeName !== 'Deck' && routeName !== 'Card' ? (<TouchableOpacity onPress={() => navigation.toggleDrawer()}><Ionicons name="ios-menu" color="#F9FDCE" size={32} style={{ paddingLeft: 10 }} /></TouchableOpacity>)
     : (<TouchableOpacity onPress={() => navigation.goBack()}><Foundation name="arrow-left" color="#F9FDCE" size={32} style={{ paddingLeft: 10 }} /></TouchableOpacity>)
-  })
-
-  return header
+  })  
 }
 
 export { stackWithNav }
