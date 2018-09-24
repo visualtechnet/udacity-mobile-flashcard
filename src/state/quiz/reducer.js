@@ -29,7 +29,7 @@ export const quiz = (state = initialSettings, actions) => {
       return {
         ...state,
         quizAvailable: data
-      }
+      }    
     case REMOVE_AVAILABLE_QUIZ: {
       const remainingQuiz = state.quizAvailable.filter(quiz => {
         return !state.quizAnswers.find(answers => answers.quiz.id === quiz.id)

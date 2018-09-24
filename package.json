@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "lint": "eslint ./src/** --fix",
-    "publish": "npm run lint && git add . && git commit -m \"Clean up, remove unncessary drawer and fixed Drawer navigation\" && git push origin master"
+    "publish": "npm run lint && git add . && git commit -m \"Clean Up Deck Result View\" && git push origin master"
   },
   "dependencies": {
     "asyncstorage": "^1.5.0",

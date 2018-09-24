@@ -1,34 +1,54 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { View, Text, Alert, FlatList } from 'react-native'
+import { View, Alert, FlatList } from 'react-native'
 import { bindActionCreators } from 'redux';
 import { getDeckWithQuestions } from '../../state/deck/actions'
-import { addQuizAnswer, setAvailableQuiz, removeQuizAvailable } from '../../state/quiz/actions';
+import { addQuizAnswer, setAvailableQuiz, removeQuizAvailable, clearQuizAnswers } from '../../state/quiz/actions';
 import { ButtonMain } from '../../components';
-import { CardQuestionView, CardView, CardQuestion, ControlContainer, CardQuestionText, CardCategory, CardAnswer, CardAnswerText } from './style'
+import { CardQuestionView, CardView, CardQuestion, 
+  ControlContainer, 
+  CardQuestionText, 
+  CardCategory, 
+  CardAnswer, 
+  CardAnswerText,
+  AnswerResultView,
+  AnswerQuestion,
+  AnswerQuestionSubText,
+  AnswerQuestionCorrect,
+  AnswerQuestionIncorrect,
+  ResultView,
+  ResultViewSummaryText,
+  ResultViewTitle
+} from './style'
 import { Container } from '../../components'
 
 class CardScreen extends Component {      
   componentDidMount() {
-    const { navigation, getDeckWithQuestions, decks, quizzes, deckWithQuestions, setAvailableQuiz } = this.props
+    const { navigation, getDeckWithQuestions, decks, quizzes, deckWithQuestions, setAvailableQuiz, clearQuizAnswers } = this.props
 
     getDeckWithQuestions(navigation.getParam("key"), decks, quizzes)
 
+    // Ensure we clear answers
+    clearQuizAnswers()
+
     // randomize Quizzes
-    setAvailableQuiz(deckWithQuestions.quizzes)        
+    setAvailableQuiz(deckWithQuestions.quizzes)      
   }   
 
   onAnswer = (quiz, answer, guess) => {
-    const { navigation, addQuizAnswer, quizAnswers, removeQuizAvailable } = this.props
+    const { navigation, decks, addQuizAnswer, quizAnswers, removeQuizAvailable } = this.props
     const deckId = navigation.getParam("key")
     const hasQuestionAnswerOnDeck = quizAnswers.find(answer => answer.deckId === deckId && answer.questionId === quiz.id)
-
+    const currentDeck = decks.find(d => d.id === deckId)
+    const deckTitle = currentDeck && currentDeck.title
+    
     if(!hasQuestionAnswerOnDeck) {
       const answers = [
         ...quizAnswers,
         {
           deckId,
+          deckTitle,
           quiz: { ...quiz },
           answer,
           isCorrectAnswer: answer === quiz.answer,
@@ -77,25 +97,52 @@ class CardScreen extends Component {
     })          
   }
 
-  renderAnswerResult = item => {
+  renderAnswerResult = ({ item }) => {    
     return (
-      <View>
-        <View>
-          <Text>{ item.quiz.question }</Text>
-          <Text>{ `Correct Answer ${item.quiz.answer}` }</Text>
-          <Text>{ `Guessed Answer ${item.answer}` }</Text>
-          <Text>{ `Your response ${item.isCorrectAnswer === item.isGuessedAnswer ? 'correct' : 'wrong'}` }</Text>
-        </View>
-      </View>
+      <AnswerResultView>        
+        <AnswerQuestion>{ item.quiz.question }</AnswerQuestion>
+        <AnswerQuestionSubText>{ `Correct Answer ${item.quiz.answer}` }</AnswerQuestionSubText>
+        <AnswerQuestionSubText>{ `Guessed Answer ${item.answer}` }</AnswerQuestionSubText>
+        {
+          item.isCorrectAnswer === item.isGuessedAnswer && 
+          <AnswerQuestionCorrect>{ `Your response ${item.isCorrectAnswer === item.isGuessedAnswer ? 'correct' : 'wrong'}` }</AnswerQuestionCorrect>
+        }
+        {
+          item.isCorrectAnswer !== item.isGuessedAnswer && 
+          <AnswerQuestionIncorrect>{ `Your response ${item.isCorrectAnswer === item.isGuessedAnswer ? 'correct' : 'wrong'}` }</AnswerQuestionIncorrect>
+        }
+        
+      </AnswerResultView>
     )
   }
 
   renderResultQuiz = () => {
     const { quizAnswers } = this.props
-
-    return (
-      <FlatList data={quizAnswers} renderItem={this.renderAnswerResult} key={item => item.quiz.id}></FlatList>
-    )    
+        
+    if(quizAnswers && quizAnswers.length > 0) {      
+      const totalCorrect = quizAnswers.filter(answers => answers.isCorrectAnswer === answers.isGuessedAnswer).length
+      const totalIncorrect = quizAnswers.filter(answers => answers.isCorrectAnswer !== answers.isGuessedAnswer).length
+      
+      return (
+        <ResultView>
+          <ResultViewTitle>
+            { quizAnswers[0].deckTitle }
+          </ResultViewTitle>
+          <ResultViewSummaryText>            
+            {`Total Questions: ${quizAnswers.length}`}
+          </ResultViewSummaryText>
+          <ResultViewSummaryText>
+            {`Total Correct: ${totalCorrect}`}
+          </ResultViewSummaryText>
+          <ResultViewSummaryText>
+            {`Total Wrong: ${totalIncorrect}`}
+          </ResultViewSummaryText>
+          <FlatList data={quizAnswers} 
+            renderItem={this.renderAnswerResult} 
+            keyExtractor={item => item.quiz.id}></FlatList>
+        </ResultView>
+      )    
+    }
   }
 
   displayDeckWithQuestions = () => {
@@ -133,7 +180,8 @@ CardScreen.propTypes = {
   addQuizAnswer: PropTypes.any,
   setAvailableQuiz: PropTypes.any,
   quizAvailable: PropTypes.array,
-  removeQuizAvailable: PropTypes.any
+  removeQuizAvailable: PropTypes.any,
+  clearQuizAnswers: PropTypes.any
 }
 
 const mapStateToProps = state => ({
@@ -148,7 +196,8 @@ const mapDispatchToActions = dispatch => bindActionCreators({
   getDeckWithQuestions,
   addQuizAnswer,
   setAvailableQuiz,
-  removeQuizAvailable
+  removeQuizAvailable,
+  clearQuizAnswers
 }, dispatch)
 
 CardScreen = connect(mapStateToProps, mapDispatchToActions)(CardScreen)
