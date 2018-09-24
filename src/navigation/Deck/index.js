@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { getDeckWithQuestions } from '../../state/deck/actions'
-import { Button } from '../../components'
-import { DeckDetailView, DeckTitle, DeckSubTitle, ControlContainer } from './style'
+import { ButtonMain } from '../../components'
+import { DeckMain, DeckDetailView, DeckTitle, DeckSubTitle, ControlContainer } from './style'
 
 class DeckScreen extends Component {    
   componentDidMount() {
@@ -18,12 +18,14 @@ class DeckScreen extends Component {
     const quizzesCount = deckWithQuestions.quizzes ? deckWithQuestions.quizzes.length : 0
             
     return (
-      <DeckDetailView>        
-        <DeckTitle>{ deckWithQuestions.title }</DeckTitle>
-        <DeckSubTitle>{`No of cards: ${quizzesCount}`}</DeckSubTitle>
+      <DeckDetailView>
+        <DeckMain>
+          <DeckTitle>{ deckWithQuestions.title }</DeckTitle>
+          <DeckSubTitle>{`No of cards: ${quizzesCount}`}</DeckSubTitle>
+        </DeckMain>
         <ControlContainer>
-          <Button title="Add New Question" onPress={() => navigation.navigate('NewQuiz', { key: deckWithQuestions.id })}></Button>
-          <Button title="Start Quiz" onPress={() => navigation.navigate('Card', { key: deckWithQuestions.id })}></Button>
+          <ButtonMain title="NEW QUESTION" onPress={() => navigation.navigate('NewQuiz', { key: deckWithQuestions.id })}></ButtonMain>
+          <ButtonMain title="START QUIZ" onPress={() => navigation.navigate('Card', { key: deckWithQuestions.id })}></ButtonMain>
         </ControlContainer>
       </DeckDetailView>
     )

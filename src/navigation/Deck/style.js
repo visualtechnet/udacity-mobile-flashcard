@@ -1,23 +1,41 @@
 import styled from 'styled-components'
 
 export const DeckDetailView = styled.View`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 10px 0;
+  justify-content: center;
+  align-items: stretch;  
+`
+
+export const DeckMain = styled.View`
+  flex: 5;  
   padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+export const ControlContainer = styled.View`  
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;  
 `
 
 export const DeckTitle = styled.Text`
-  font-size: 36px;
+  font-size: 40px;
   text-align: center;
   font-weight: bold;
 `
 
 export const DeckSubTitle = styled.Text`
-  font-size: 24px;
+  font-size: 28px;
   text-align: center;
+  font-style: italic;
 `
 
-export const ControlContainer = styled.View`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`
+
+

@@ -47,7 +47,24 @@
     "quizzes": [        
       "3",
       "4",
-      "5"
+      "5",
+      "6"
+    ]
+  },
+  {
+    "id": "6",
+    "title": "Math",
+    "dateCreated": "09/21/2018",
+    "quizzes": [              
+      "6"
+    ]
+  },
+  {
+    "id": "7",
+    "title": "Minecraft",
+    "dateCreated": "09/21/2018",
+    "quizzes": [              
+      "7"
     ]
   }  
 ]

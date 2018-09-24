@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-export const ButtonMain = styled.Button`
+export const Container = styled.View`
   padding: 10px;
-  color: blue;
+  margin: 10px;
+  background-color: #476C9B;     
 `

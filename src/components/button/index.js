@@ -1,8 +1,9 @@
 import React from 'react'
-import { ButtonMain } from './style'
+import { Button } from 'react-native'
+import { Container } from './style'
 
-const Button = (props) => {
-  return <ButtonMain {...props}></ButtonMain>
+const ButtonMain = (props) => {
+  return <Container><Button color="#fff" {...props}></Button></Container>
 }
 
-export { Button }
+export { ButtonMain }

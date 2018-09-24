@@ -56,5 +56,25 @@
       "Ant Man"
     ],
     "answer": "Batman"
+  },
+  {
+    "id": "6",
+    "question": "What is 6 divided by 2?",
+    "choices":[
+      "3",
+      "5",
+      "10"
+    ],
+    "answer": "3"
+  },
+  {
+    "id": "7",
+    "question": "What is the command R for?",
+    "choices":[
+      "Roller",
+      "Right",
+      "Radius"
+    ],
+    "answer": "Radius"
   }
 ]
