@@ -34,8 +34,7 @@ export const quiz = (state = initialSettings, actions) => {
       const remainingQuiz = state.quizAvailable.filter(quiz => {
         return !state.quizAnswers.find(answers => answers.quiz.id === quiz.id)
       })
-
-      console.log('Available Quizzes Now', remainingQuiz)
+      
       return {
         ...state,
         quizAvailable: [...remainingQuiz]

@@ -7,7 +7,6 @@ import { getDeckWithQuestions } from '../../state/deck/actions'
 import { addQuizAnswer, setAvailableQuiz, removeQuizAvailable } from '../../state/quiz/actions';
 import { ButtonMain } from '../../components';
 import { CardQuestionView, CardView, CardQuestion, ControlContainer, CardQuestionText, CardCategory, CardAnswer, CardAnswerText } from './style'
-import _ from 'lodash'
 
 class CardScreen extends Component {      
   componentDidMount() {
@@ -43,9 +42,7 @@ class CardScreen extends Component {
         { text: 'OK', onPress:() => removeQuizAvailable()}
       ],
       { cancelable: false })
-    }
-
-    console.log('Heres your quiz answers', quizAnswers)
+    }    
   }
 
   onShowAnswer = () => {
