@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { View, Text, Button,  TextInput, Picker } from 'react-native'
 import { connect } from 'react-redux'
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 
 class NewDeckScreen extends Component {  
@@ -38,7 +38,7 @@ class NewDeckScreen extends Component {
         <TextInput value={this.state.deckModel.deckTitle} />        
         <View>
           <Text>Add Quiz</Text>
-          <Picker selectedValue={this.state.selectedQuiz} onValueChange={(item, index) => this.addQuiz(item)}>
+          <Picker selectedValue={this.state.selectedQuiz} onValueChange={ item => this.addQuiz(item)}>
             <Picker.Item label="asdf" value="adsfaffgahjj"></Picker.Item>
             <Picker.Item label="dasdsfgsd" value="adsffggggaf"></Picker.Item>
             <Picker.Item label="sdfgdsfgdg" value="adsffffafjj"></Picker.Item>
@@ -51,8 +51,12 @@ class NewDeckScreen extends Component {
   }
 }
 
+NewDeckScreen.propTypes = {
+  quizzes: PropTypes.array
+}
+
 const mapStateToProps = state => ({
-  
+  quizzes: state.quiz.quizzes
 })
 
 NewDeckScreen = connect(mapStateToProps)(NewDeckScreen)

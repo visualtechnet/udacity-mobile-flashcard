@@ -1,21 +1,10 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native';
-import { AppLoading } from 'expo'
+import PropTypes from 'prop-types'
 import { MainDrawer } from './components/nav'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { loadQuiz } from './state/quiz/actions'
 import { loadDecks } from './state/deck/actions'
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 class Main extends Component {  
   componentDidMount() {
@@ -29,9 +18,13 @@ class Main extends Component {
   }
 }
 
+Main.propTypes = {
+  loadQuiz: PropTypes.any,
+  loadDecks: PropTypes.any
+}
 
 const mapStateToProps = state => ({
-
+  decks: state.deck.decks
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -39,6 +32,4 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   loadDecks
 }, dispatch)
 
-Main = connect(mapStateToProps, mapDispatchToProps)(Main)
-
-export default Main
+export default connect(mapStateToProps, mapDispatchToProps)(Main)

@@ -14,10 +14,7 @@ export function loadDecks() {
 export function getDeckWithQuestions(id, decks, quizzes) {
   return function (dispatch) {         
 
-    console.log(' ======== Test =========== ', id, decks, quizzes)
-
-
-    const deck = decks.find(deck => parseInt(deck.id) === id)
+    const deck = decks.find(deck => deck.id === id)
     const selectedQuizzes = deck && deck.quizzes.map(quizId => {
       return quizzes.find(quiz => quiz.id === quizId)
     });    

@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { LOAD_QUIZ } from '../../utils/constants';
 import quizzes from '../../data/quizzes.json'
 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import PropTypes from 'prop-types'
+import { Text } from 'react-native'
 import { connect } from 'react-redux'
-import MaterialIcons from '@expo/vector-icons/MaterialIcons'
+
 import { CardView } from './style'
 import { bindActionCreators } from 'redux';
 import { getDeckWithQuestions } from '../../state/deck/actions'
@@ -29,6 +30,14 @@ class CardScreen extends Component {
   render() {
     return this.displayDeckWithQuestions()
   }
+}
+
+CardScreen.propTypes = {
+  navigation: PropTypes.any,
+  getDeckWithQuestions: PropTypes.any,
+  decks: PropTypes.array,
+  quizzes: PropTypes.array,
+  deckWithQuestions: PropTypes.any
 }
 
 const mapStateToProps = state => ({

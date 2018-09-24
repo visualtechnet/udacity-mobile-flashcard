@@ -16,6 +16,7 @@
   "parser": "babel-eslint",
   "rules": {
     "semi": [0, "never"],
-    "react/display-name": [0]
+    "react/display-name": [0],
+    "no-class-assign": "off"
   }
 }

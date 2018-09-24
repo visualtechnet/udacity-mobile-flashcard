@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { View, Text, Button,  TextInput, Picker } from 'react-native'
 import { connect } from 'react-redux'
-import Entypo from '@expo/vector-icons/Entypo';
 
 class NewQuizScreen extends Component {  
   constructor(props) {
@@ -17,7 +17,7 @@ class NewQuizScreen extends Component {
     }
   }
 
-  addQuestion = (item) => {
+  addQuestion = () => {
 
   }
 
@@ -28,7 +28,7 @@ class NewQuizScreen extends Component {
         <TextInput value={this.state.quizModel.question} />        
         <View>
           <Text>Enter Choices</Text>
-          <Picker selectedValue={this.state.selectedChoice} onValueChange={(item, index) => this.addQuestion(item)}>
+          <Picker selectedValue={this.state.selectedChoice} onValueChange={ item => this.addQuestion(item)}>
             <Picker.Item label="asdf" value="adsfaffgahjj"></Picker.Item>
             <Picker.Item label="dasdsfgsd" value="adsffggggaf"></Picker.Item>
             <Picker.Item label="sdfgdsfgdg" value="adsffffafjj"></Picker.Item>
@@ -43,8 +43,12 @@ class NewQuizScreen extends Component {
   }
 }
 
+NewQuizScreen.propTypes = {
+  quizzes: PropTypes.array
+}
+
 const mapStateToProps = state => ({
-  
+  quizzes: state.quiz.quizzes
 })
 
 NewQuizScreen = connect(mapStateToProps)(NewQuizScreen)

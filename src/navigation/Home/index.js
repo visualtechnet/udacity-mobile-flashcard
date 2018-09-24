@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
-import { View, Text, FlatList, TouchableOpacity, StatusBar } from 'react-native'
+import PropTypes from 'prop-types'
+import { View, FlatList, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { DeckItem, DeckTitle, DeckCount } from './style'
 
 class HomeScreen extends Component {  
-  viewDeck = item => {
+  viewDeck = deck => {
     const { navigation } = this.props
-
-    navigation.navigate('Deck', { id: item.id });
+            
+    navigation.navigate('Deck', { "id": deck.id });
   }
 
   deckView = ({ item }) => {    
     return (
-      <TouchableOpacity id={item.id} onPress={item => this.viewDeck(item)} tintColor="#fff">
+      <TouchableOpacity id={item.id} onPress={() => this.viewDeck(item)} tintColor="#fff">
         <DeckItem>
           <DeckTitle>{ item.title }</DeckTitle>
           <DeckCount>{ item.quizzes.length }</DeckCount>
@@ -22,22 +23,28 @@ class HomeScreen extends Component {
   }
 
   render() {
-    const { decks, quizzes, navigation } = this.props
+    const { decks } = this.props
 
     return (
-      <View>
-        <StatusBar barStyle="light-content" />
+      <View>        
         {
           decks && decks.length > 0 && (
             <FlatList data={decks} 
             renderItem={this.deckView} 
-            keyExtractor={(item, index) => item.id} />
+            keyExtractor={ item => item.id} />
           )
         }
       </View>
     )
 
   }
+}
+
+HomeScreen.propTypes = {
+  decks: PropTypes.array,
+  quizzes: PropTypes.array,
+  navigation: PropTypes.any,
+
 }
 
 const mapStateToProps = state => ({
