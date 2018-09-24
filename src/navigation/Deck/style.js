@@ -10,7 +10,7 @@ export const DeckDetailView = styled.View`
 `
 
 export const DeckMain = styled.View`
-  flex: 5;  
+  flex: 2;  
   padding: 10px;
   display: flex;
   justify-content: center;
@@ -20,8 +20,8 @@ export const DeckMain = styled.View`
 export const ControlContainer = styled.View`  
   flex: 1;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;  
 `
 

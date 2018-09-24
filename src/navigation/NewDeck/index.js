@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, Text, Button,  TextInput, Picker } from 'react-native'
+import { View, Text,  TextInput, Picker } from 'react-native'
 import { connect } from 'react-redux'
-
+import { ButtonMain } from '../../components';
+import { ControlContainer, DeckView, DeckViewText } from './style'
+import { Container } from '../../components'
+import { withNavigation } from 'react-navigation'
 
 class NewDeckScreen extends Component {  
   constructor(props) {
@@ -33,9 +36,11 @@ class NewDeckScreen extends Component {
 
   render() {
     return (
-      <View>
-        <Text>Enter Deck Name</Text>
-        <TextInput value={this.state.deckModel.deckTitle} />        
+      <Container>
+        <DeckView>
+          <DeckViewText>What is the title of your new deck?</DeckViewText>
+          <TextInput value={this.state.deckModel.deckTitle} />
+        </DeckView>
         <View>
           <Text>Add Quiz</Text>
           <Picker selectedValue={this.state.selectedQuiz} onValueChange={ item => this.addQuiz(item)}>
@@ -44,21 +49,25 @@ class NewDeckScreen extends Component {
             <Picker.Item label="sdfgdsfgdg" value="adsffffafjj"></Picker.Item>
           </Picker>
         </View>)
-        <Button title="SAVE" onPress={() => this.onSave}  />
-      </View>
+        <ControlContainer>
+          <ButtonMain title="SAVE" onPress={() => this.onSave}  />          
+        </ControlContainer>
+
+      </Container>
     )
 
   }
 }
 
 NewDeckScreen.propTypes = {
-  quizzes: PropTypes.array
+  quizzes: PropTypes.array,
+  navigation: PropTypes.any
 }
 
 const mapStateToProps = state => ({
   quizzes: state.quiz.quizzes
 })
 
-NewDeckScreen = connect(mapStateToProps)(NewDeckScreen)
+NewDeckScreen = connect(mapStateToProps)(withNavigation(NewDeckScreen))
 
 export { NewDeckScreen }

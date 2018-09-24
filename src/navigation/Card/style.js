@@ -12,10 +12,11 @@ export const CardQuestionView = styled.View`
 `
 
 export const CardQuestion = styled.View`  
-  flex: 3;
+  flex: 1;  
   display: flex;
   justify-content: center;
   align-items: center;  
+  
 `
 
 export const CardQuestionText = styled.Text`
@@ -33,14 +34,14 @@ export const ControlContainer = styled.View`
   flex: 1;
   padding: 10px 0;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: flex-start;
   flex-grow: 1;
 `
 
 export const CardAnswer = styled.View`
-  flex: 2;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;

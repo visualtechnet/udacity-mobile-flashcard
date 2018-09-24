@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { View, FlatList, TouchableOpacity } from 'react-native'
+import { FlatList, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { DeckItem, DeckTitle, DeckCount } from './style'
+import { Container } from '../../components'
 
 class HomeScreen extends Component {  
   viewDeck = deck => {
@@ -26,7 +27,7 @@ class HomeScreen extends Component {
     const { decks } = this.props
 
     return (
-      <View>        
+      <Container>
         {
           decks && decks.length > 0 && (
             <FlatList data={decks} 
@@ -34,7 +35,7 @@ class HomeScreen extends Component {
             keyExtractor={ item => item.id} />
           )
         }
-      </View>
+      </Container>
     )
 
   }

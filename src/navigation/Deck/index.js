@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { getDeckWithQuestions } from '../../state/deck/actions'
 import { ButtonMain } from '../../components'
 import { DeckMain, DeckDetailView, DeckTitle, DeckSubTitle, ControlContainer } from './style'
+import { Container } from '../../components'
 
 class DeckScreen extends Component {    
   componentDidMount() {
@@ -18,16 +19,18 @@ class DeckScreen extends Component {
     const quizzesCount = deckWithQuestions.quizzes ? deckWithQuestions.quizzes.length : 0
             
     return (
-      <DeckDetailView>
-        <DeckMain>
-          <DeckTitle>{ deckWithQuestions.title }</DeckTitle>
-          <DeckSubTitle>{`No of cards: ${quizzesCount}`}</DeckSubTitle>
-        </DeckMain>
-        <ControlContainer>
-          <ButtonMain title="NEW QUESTION" onPress={() => navigation.navigate('NewQuiz', { key: deckWithQuestions.id })}></ButtonMain>
-          <ButtonMain title="START QUIZ" onPress={() => navigation.navigate('Card', { key: deckWithQuestions.id })}></ButtonMain>
-        </ControlContainer>
-      </DeckDetailView>
+      <Container>
+        <DeckDetailView>
+          <DeckMain>
+            <DeckTitle>{ deckWithQuestions.title }</DeckTitle>
+            <DeckSubTitle>{`No of cards: ${quizzesCount}`}</DeckSubTitle>
+          </DeckMain>
+          <ControlContainer>
+            <ButtonMain title="ADD CARD" onPress={() => navigation.navigate('NewQuiz', { key: deckWithQuestions.id })}></ButtonMain>
+            <ButtonMain title="START QUIZ" onPress={() => navigation.navigate('Card', { key: deckWithQuestions.id })}></ButtonMain>
+          </ControlContainer>
+        </DeckDetailView>
+      </Container>
     )
   }
 

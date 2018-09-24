@@ -7,6 +7,7 @@ import { getDeckWithQuestions } from '../../state/deck/actions'
 import { addQuizAnswer, setAvailableQuiz, removeQuizAvailable } from '../../state/quiz/actions';
 import { ButtonMain } from '../../components';
 import { CardQuestionView, CardView, CardQuestion, ControlContainer, CardQuestionText, CardCategory, CardAnswer, CardAnswerText } from './style'
+import { Container } from '../../components'
 
 class CardScreen extends Component {      
   componentDidMount() {
@@ -67,8 +68,8 @@ class CardScreen extends Component {
               </CardAnswerText>
             </CardAnswer>
             <ControlContainer>
-              <ButtonMain title="CORRECT" onPress={() => this.onAnswer(quiz, answer, true)}></ButtonMain>
-              <ButtonMain title="INCORRECT" onPress={() => this.onAnswer(quiz, answer, false)}></ButtonMain>
+              <ButtonMain title="CORRECT" onPress={() => this.onAnswer(quiz, answer, true)} style={{ backgroundColor: '#77966d' }}></ButtonMain>
+              <ButtonMain title="INCORRECT" onPress={() => this.onAnswer(quiz, answer, false)} style={{ backgroundColor: '#801515' }}></ButtonMain>
             </ControlContainer>   
           </CardQuestionView>          
         </View>
@@ -102,15 +103,17 @@ class CardScreen extends Component {
 
     if(quizAvailable) {
       return (
-        <CardView>
-          <CardCategory>{ quizAvailable.title }</CardCategory>          
-          {
-            quizAvailable.length > 0 && this.renderCardQuiz()
-          }
-          {
-            quizAvailable.length === 0 && this.renderResultQuiz()
-          }
-        </CardView>
+        <Container>
+          <CardView>
+            <CardCategory>{ quizAvailable.title }</CardCategory>          
+            {
+              quizAvailable.length > 0 && this.renderCardQuiz()
+            }
+            {
+              quizAvailable.length === 0 && this.renderResultQuiz()
+            }
+          </CardView>
+        </Container>
       )
     }
   }
