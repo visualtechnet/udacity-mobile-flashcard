@@ -76,5 +76,41 @@
       "Radius"
     ],
     "answer": "Radius"
+  },
+  {
+    "id": "8",
+    "question": "What does the enchantment respiration do?",
+    "choices": [
+      "Let's you breath slower",
+      "Let's you breath underwater longer and slower suffocation",
+      "Let's you throw fireball",
+      "Make's you throw up",
+      "Make's you teary"
+    ],
+    "answer": "Let's you breath underwater longer and slower suffocation"
+  },
+  {
+    "id": "9",
+    "question": "What do bookshelves do when they are around an enchantment table?",
+    "choices": [
+      "Books fly",
+      "Table turn",
+      "Throw Fireworks outside",
+      "Crash the computer",
+      "Puts more special enchantments in the table"
+    ],
+    "answer": "Puts more special enchantments in the table"
+  },
+  {
+    "id": "10",
+    "question": "What is the new potion in version 1.6.0?",
+    "choices": [
+      "Potion of turtle master",
+      "Potion of slow falling",
+      "Potion of strength",
+      "Potion of leaping",
+      "Potion of poison"
+    ],
+    "answer": "Potion of slow falling"
   }
 ]
