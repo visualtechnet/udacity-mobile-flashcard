@@ -17,7 +17,7 @@ class HomeScreen extends Component {
       <TouchableOpacity id={item.id} onPress={() => this.viewDeck(item)} tintColor="#fff">
         <DeckItem>
           <DeckTitle>{ item.title }</DeckTitle>
-          <DeckCount>{ item.quizzes.length }</DeckCount>
+          <DeckCount>{ item.quizzes && item.quizzes.length }</DeckCount>
         </DeckItem>
       </TouchableOpacity>
     )

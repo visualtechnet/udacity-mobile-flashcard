@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "lint": "eslint ./src/** --fix",
-    "publish": "npm run lint && git add . && git commit -m \"Updated New Deck without saving functionality\" && git push origin master"
+    "publish": "npm run lint && git add . && git commit -m \"Updated New Card Question with Submit\" && git push origin master"
   },
   "dependencies": {
     "asyncstorage": "^1.5.0",

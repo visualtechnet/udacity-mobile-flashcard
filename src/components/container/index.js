@@ -1,16 +1,18 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { SafeAreaView } from 'react-navigation'
-import { StatusBar } from 'react-native'
+import { StatusBar, ScrollView } from 'react-native'
 import { ContainerView } from './style'
 
-const Container = ({ children }) => (
-  <SafeAreaView>
+const Container = ({ children }) => (  
+  <SafeAreaView style={{ flex: 1, backgroundColor: "#fff"}}>
     <StatusBar barStyle="light-content" backgroundColor="#fff" />
     <ContainerView>
-      { children }
+      <ScrollView>
+        { children }
+      </ScrollView>
     </ContainerView>
-  </SafeAreaView>
+  </SafeAreaView>  
 )
 
 Container.propTypes = {

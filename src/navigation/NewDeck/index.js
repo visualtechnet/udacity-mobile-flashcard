@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { KeyboardAvoidingView, Picker, Alert } from 'react-native'
 import { connect } from 'react-redux'
-import { ButtonMain } from '../../components';
-import { ControlContainer, DeckView, DeckViewText, PickerView } from './style'
-import { Container } from '../../components'
 import { withNavigation } from 'react-navigation'
-import { TextControl } from '../../components/textControl'
+import { bindActionCreators } from 'redux';
+import { ButtonMain, Container, TextControl } from '../../components'
+import { ControlContainer, DeckView, DeckViewText, PickerView } from './style'
+import { addDeck } from '../../state/deck/actions'
+import { generateUID } from '../../utils/helper'
 
 class NewDeckScreen extends Component {  
   constructor(props) {
@@ -16,27 +17,27 @@ class NewDeckScreen extends Component {
       deckTitle: '',
       selectedQuiz: '',
       quizzes: [],
-      model: {
+      deck: {
+        id: 0,
         title: '',
-        quizzes: []
+        quizzes: [],
+        dateCreated: ''
       }
     }
   }
 
   onAdd = () => {
-    const isQuizExists = this.state.quizzes.find(d => d === this.state.selectedQuiz)
+    const isQuizExists = this.state.quizzes && this.state.quizzes.find(d => d === this.state.selectedQuiz)
     
     if(!isQuizExists) {
       let model = { 
-        model: {
-          quizzes: this.state.quizzes, 
-          title: this.state.deckTitle 
-        }
+        quizzes: this.state.quizzes, 
+        title: this.state.deckTitle         
       }
 
-      model.model.quizzes.push(this.state.selectedQuiz)
+      model.quizzes.push(this.state.selectedQuiz)
 
-      this.setState({ model });
+      this.setState({ deck: model });
       Alert.alert('Add Question', 'Question added.')
     } else {
       Alert.alert('Cannot Add Question', 'Question already added.')
@@ -44,7 +45,23 @@ class NewDeckScreen extends Component {
   }
 
   onSave = () => {
-    
+    const { addDeck, navigation } = this.props 
+
+    if(this.state.quizzes.length === 0) {
+      Alert.alert('Unable to add deck', 'You must add at least one question')
+    }
+
+    if(this.state.deckTitle.length === 0) {
+      Alert.alert('Unable to add deck', 'You must specify a title')
+    }
+
+    if(this.state.deck.quizzes.length > 0 && this.state.deck.title.length > 0) {
+      const currentDate = new Date()
+      const deck = Object.assign({}, this.state.deck, { id: generateUID(), dateCreated: `${currentDate.getMonth()}/${currentDate.getDate()}/${currentDate.getFullYear()}`})    
+      addDeck(deck)
+      Alert.alert('Success', 'Deck added successfully')
+      navigation.navigate('Home')
+    }
   }
 
   renderQuizPicker = () => {
@@ -83,7 +100,7 @@ class NewDeckScreen extends Component {
           }
           <ControlContainer>
             <ButtonMain title="ADD QUESTION" onPress={this.onAdd} />
-            <ButtonMain title="SAVE" onPress={() => this.onSave}  />          
+            <ButtonMain title="SAVE" onPress={this.onSave}  />          
           </ControlContainer>
         </KeyboardAvoidingView>
       </Container>
@@ -94,13 +111,20 @@ class NewDeckScreen extends Component {
 
 NewDeckScreen.propTypes = {
   quizzes: PropTypes.array,
-  navigation: PropTypes.any
+  navigation: PropTypes.any,
+  addDeck: PropTypes.any,
+  decks: PropTypes.array
 }
 
 const mapStateToProps = state => ({
-  quizzes: state.quiz.quizzes
+  quizzes: state.quiz.quizzes,
+  decks: state.deck.decks
 })
 
-NewDeckScreen = connect(mapStateToProps)(withNavigation(NewDeckScreen))
+const mapDispatchToProps = dispatch => bindActionCreators({
+  addDeck 
+}, dispatch)
+
+NewDeckScreen = connect(mapStateToProps, mapDispatchToProps)(withNavigation(NewDeckScreen))
 
 export { NewDeckScreen }

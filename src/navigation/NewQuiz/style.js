@@ -6,3 +6,11 @@ export const ControlContainer = styled.View`
   justify-content: center;
   align-items: center;
 `
+
+export const QuestionTextView = styled.View`
+  padding: 5px;
+`
+
+export const ChoicesView = styled.View`
+  padding: 5px;
+`

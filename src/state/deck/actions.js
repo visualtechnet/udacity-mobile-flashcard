@@ -1,4 +1,4 @@
-import { LOAD_DECK, GET_DECK_QUESTIONS } from "../../utils/constants";
+import { LOAD_DECK, GET_DECK_QUESTIONS, ADD_DECK } from "../../utils/constants";
 import decks from '../../data/decks.json'
 
 
@@ -8,6 +8,15 @@ export function loadDecks() {
       type: LOAD_DECK,
       data: decks
     })
+  }
+}
+
+export function addDeck(deck) { 
+  return function (dispatch) { 
+    dispatch({
+      type: ADD_DECK,
+      data: deck
+    })  
   }
 }
 
