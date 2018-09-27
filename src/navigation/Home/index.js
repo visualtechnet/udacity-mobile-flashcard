@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { FlatList, TouchableOpacity } from 'react-native'
-import { connect } from 'react-redux'
 import { DeckItem, DeckTitle, DeckCount } from './style'
 import { Container } from '../../components'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
 
 class HomeScreen extends Component {  
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      decks: []
+    }
+  }
+
   viewDeck = deck => {
     const { navigation } = this.props
             
@@ -14,7 +24,7 @@ class HomeScreen extends Component {
 
   deckView = ({ item }) => {    
     return (
-      <TouchableOpacity id={item.id} onPress={() => this.viewDeck(item)} tintColor="#fff">
+      <TouchableOpacity key={item.id} onPress={() => this.viewDeck(item)} tintColor="#fff">
         <DeckItem>
           <DeckTitle>{ item.title }</DeckTitle>
           <DeckCount>{ item.quizzes && item.quizzes.length }</DeckCount>
@@ -23,36 +33,34 @@ class HomeScreen extends Component {
     )
   }
 
-  render() {
+  render() {    
     const { decks } = this.props
-
-    return (
-      <Container>
-        {
-          decks && decks.length > 0 && (
-            <FlatList data={decks} 
-            renderItem={this.deckView} 
-            keyExtractor={ item => item.id} />
-          )
-        }
-      </Container>
-    )
-
+            
+    if(decks) {      
+      return (
+        <Container>
+          {          
+            <FlatList data={decks} renderItem={this.deckView} keyExtractor={ item => item.id} />            
+          }
+        </Container>
+      )
+    }
   }
 }
 
-HomeScreen.propTypes = {
-  decks: PropTypes.array,
-  quizzes: PropTypes.array,
+HomeScreen.propTypes = {    
   navigation: PropTypes.any,
-
+  decks: PropTypes.any
 }
 
-const mapStateToProps = state => ({
-  decks: state.deck.decks,
-  quizzes: state.quiz.quizzes
+const mapStateToProps  = state => ({
+  decks: state.deck.decks
 })
 
-HomeScreen = connect(mapStateToProps)(HomeScreen)
+const mapDispatchToProps = dispatch => bindActionCreators({
+  
+}, dispatch)
+
+HomeScreen = connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
 
 export { HomeScreen }

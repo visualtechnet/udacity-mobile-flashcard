@@ -13,7 +13,7 @@ class NewDeckScreen extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
+    this.state = {      
       deckTitle: '',
       selectedQuiz: '',
       quizzes: [],
@@ -45,7 +45,7 @@ class NewDeckScreen extends Component {
   }
 
   onSave = () => {
-    const { addDeck, navigation } = this.props 
+    const { addDeck, navigation, decks } = this.props 
 
     if(this.state.quizzes.length === 0) {
       Alert.alert('Unable to add deck', 'You must add at least one question')
@@ -58,7 +58,8 @@ class NewDeckScreen extends Component {
     if(this.state.deck.quizzes.length > 0 && this.state.deck.title.length > 0) {
       const currentDate = new Date()
       const deck = Object.assign({}, this.state.deck, { id: generateUID(), dateCreated: `${currentDate.getMonth()}/${currentDate.getDate()}/${currentDate.getFullYear()}`})    
-      addDeck(deck)
+      addDeck(deck, decks)
+
       Alert.alert('Success', 'Deck added successfully')
       navigation.navigate('Home')
     }
@@ -110,9 +111,9 @@ class NewDeckScreen extends Component {
 }
 
 NewDeckScreen.propTypes = {
-  quizzes: PropTypes.array,
   navigation: PropTypes.any,
   addDeck: PropTypes.any,
+  quizzes: PropTypes.array,
   decks: PropTypes.array
 }
 

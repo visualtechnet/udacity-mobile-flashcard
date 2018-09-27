@@ -1,4 +1,4 @@
-import { LOAD_QUIZ, ADD_QUIZ_ANSWER, CLEAR_QUIZ_ANSWER, SET_AVAILABLE_QUIZ, REMOVE_AVAILABLE_QUIZ } from '../../utils/constants'
+import { LOAD_QUIZ, ADD_QUIZ_ANSWER, CLEAR_QUIZ_ANSWER, SET_AVAILABLE_QUIZ, REMOVE_AVAILABLE_QUIZ, ADD_QUIZ } from '../../utils/constants'
 
 const initialSettings = {
   quizzes: [],
@@ -15,6 +15,11 @@ export const quiz = (state = initialSettings, actions) => {
         ...state,
         quizzes: data
       }  
+    case ADD_QUIZ: 
+      return {
+        ...state,
+        quizzes: data
+      }
     case ADD_QUIZ_ANSWER: 
       return {
         ...state,

@@ -14,3 +14,15 @@ export const QuestionTextView = styled.View`
 export const ChoicesView = styled.View`
   padding: 5px;
 `
+
+export const LabelView = styled.View`
+  display:flex;  
+  justify-content:center;
+  align-items: center;
+`
+
+export const Label = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+  padding-left: 10px;    
+`

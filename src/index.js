@@ -1,20 +1,41 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { MainDrawer } from './components/nav'
+import { AppLoading } from 'expo'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { MainDrawer } from './components/nav'
 import { loadQuiz } from './state/quiz/actions'
 import { loadDecks } from './state/deck/actions'
+import { Promise } from 'bluebird'
+//import { AsyncStore } from './storage';
 
-class Main extends Component {  
-  componentDidMount() {
-    const { loadQuiz, loadDecks } = this.props  
-    loadQuiz()
-    loadDecks()
+class Main extends Component {     
+  constructor(props)  {
+    super(props)
+
+    this.state = {
+      isReady: false
+    }    
+
+    //AsyncStore.clear()
   }
 
-  render () {
-    return <MainDrawer />
+  loadData = () => {
+    const { loadQuiz, loadDecks } = this.props  
+    
+    return Promise.all([loadQuiz(), loadDecks()])
+  }
+
+  render () {    
+    if(!this.state.isReady) {      
+      return <AppLoading
+        startAsync={() => this.loadData()}
+        onFinish={() => this.setState({ isReady: true })}
+        />
+    }
+    else {      
+      return <MainDrawer />
+    }
   }
 }
 
@@ -23,13 +44,10 @@ Main.propTypes = {
   loadDecks: PropTypes.any
 }
 
-const mapStateToProps = state => ({
-  decks: state.deck.decks
-})
-
 const mapDispatchToProps = dispatch => bindActionCreators({
-  loadQuiz,
-  loadDecks
+  loadDecks,
+  loadQuiz
 }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
+
+export default connect(null, mapDispatchToProps)(Main)
