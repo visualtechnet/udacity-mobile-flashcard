@@ -7,6 +7,7 @@ import { MainDrawer } from './components/nav'
 import { loadQuiz } from './state/quiz/actions'
 import { loadDecks } from './state/deck/actions'
 import { Promise } from 'bluebird'
+import { setLocationNotification } from './utils/notifications'
 //import { AsyncStore } from './storage';
 
 class Main extends Component {     
@@ -18,6 +19,10 @@ class Main extends Component {
     }    
 
     //AsyncStore.clear()
+  }
+
+  componentDidMount() {
+    setLocationNotification()
   }
 
   loadData = () => {

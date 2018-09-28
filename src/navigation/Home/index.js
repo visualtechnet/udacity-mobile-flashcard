@@ -6,7 +6,6 @@ import { Container } from '../../components'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-
 class HomeScreen extends Component {  
   constructor(props) {
     super(props)

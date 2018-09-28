@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const CardView = styled.View`  
-  padding: 10px;
+  padding: 0 10px;
   height: 100%;
 `
 
@@ -15,8 +15,13 @@ export const CardQuestion = styled.View`
   flex: 1;  
   display: flex;
   justify-content: center;
+  align-items: center;    
+`
+export const CardAnswer = styled.View`
+  flex: 1;
+  display: flex;
+  justify-content: center;
   align-items: center;  
-  
 `
 
 export const CardQuestionText = styled.Text`
@@ -40,13 +45,13 @@ export const ControlContainer = styled.View`
   flex-grow: 1;
 `
 
-export const CardAnswer = styled.View`
-  flex: 1;
+export const ResultButtons = styled.View`
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 10px;
+  align-items: flex-start;
 `
+
 
 export const CardAnswerText = styled.Text`
   font-size: 24px;

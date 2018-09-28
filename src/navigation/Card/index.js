@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { View, Alert, FlatList } from 'react-native'
-import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux'
 import { getDeckWithQuestions } from '../../state/deck/actions'
-import { addQuizAnswer, setAvailableQuiz, removeQuizAvailable, clearQuizAnswers } from '../../state/quiz/actions';
-import { ButtonMain } from '../../components';
-import { CardQuestionView, CardView, CardQuestion, 
+import { addQuizAnswer, setAvailableQuiz, removeQuizAvailable, clearQuizAnswers } from '../../state/quiz/actions'
+import { ButtonMain } from '../../components'
+import { clearLocationNotifications, setLocationNotification } from '../../utils/notifications'
+import { 
+  CardQuestionView, 
+  CardView, 
+  CardQuestion, 
   ControlContainer, 
   CardQuestionText, 
   CardCategory, 
@@ -19,12 +23,17 @@ import { CardQuestionView, CardView, CardQuestion,
   AnswerQuestionIncorrect,
   ResultView,
   ResultViewSummaryText,
-  ResultViewTitle
+  ResultViewTitle,
+  ResultButtons
 } from './style'
 import { Container } from '../../components'
 
 class CardScreen extends Component {      
   componentDidMount() {
+       this.setQuiz()
+  }   
+
+  setQuiz = () => {
     const { navigation, getDeckWithQuestions, decks, quizzes, deckWithQuestions, setAvailableQuiz, clearQuizAnswers } = this.props
 
     getDeckWithQuestions(navigation.getParam("key"), decks, quizzes)
@@ -33,8 +42,8 @@ class CardScreen extends Component {
     clearQuizAnswers()
 
     // randomize Quizzes
-    setAvailableQuiz(deckWithQuestions.quizzes)      
-  }   
+    setAvailableQuiz(deckWithQuestions.quizzes)   
+  }
 
   onAnswer = (quiz, answer, guess) => {
     const { navigation, decks, addQuizAnswer, quizAnswers, removeQuizAvailable } = this.props
@@ -65,11 +74,7 @@ class CardScreen extends Component {
       { cancelable: false })
     }    
   }
-
-  onShowAnswer = () => {
-
-  }
-
+  
   renderCardQuiz = () => {    
     const { quizAvailable } = this.props
         
@@ -116,13 +121,19 @@ class CardScreen extends Component {
     )
   }
 
+  restartQuiz = () => {
+    this.setQuiz();
+  }
+
   renderResultQuiz = () => {
     const { quizAnswers } = this.props
         
     if(quizAnswers && quizAnswers.length > 0) {      
       const totalCorrect = quizAnswers.filter(answers => answers.isCorrectAnswer === answers.isGuessedAnswer).length
       const totalIncorrect = quizAnswers.filter(answers => answers.isCorrectAnswer !== answers.isGuessedAnswer).length
-      
+            
+      clearLocationNotifications()
+          .then(setLocationNotification)
       return (
         <ResultView>
           <ResultViewTitle>
@@ -140,6 +151,10 @@ class CardScreen extends Component {
           <FlatList data={quizAnswers} 
             renderItem={this.renderAnswerResult} 
             keyExtractor={item => item.quiz.id}></FlatList>
+          <ResultButtons>
+            <ButtonMain title="RESTART QUIZ" onPress={() => this.restartQuiz()} style={{ backgroundColor: '#77966d' }}></ButtonMain>
+            <ButtonMain title="BACK TO DECK" onPress={(navigation) => navigation.goBack()} style={{ backgroundColor: '#77966d' }}></ButtonMain>
+          </ResultButtons>
         </ResultView>
       )    
     }
