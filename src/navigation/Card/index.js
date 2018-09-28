@@ -126,9 +126,10 @@ class CardScreen extends Component {
   }
 
   renderResultQuiz = () => {
-    const { quizAnswers } = this.props
+    const { quizAnswers, navigation } = this.props
         
     if(quizAnswers && quizAnswers.length > 0) {      
+      const deckId = navigation.getParam("key")
       const totalCorrect = quizAnswers.filter(answers => answers.isCorrectAnswer === answers.isGuessedAnswer).length
       const totalIncorrect = quizAnswers.filter(answers => answers.isCorrectAnswer !== answers.isGuessedAnswer).length
             
@@ -153,7 +154,7 @@ class CardScreen extends Component {
             keyExtractor={item => item.quiz.id}></FlatList>
           <ResultButtons>
             <ButtonMain title="RESTART QUIZ" onPress={() => this.restartQuiz()} style={{ backgroundColor: '#77966d' }}></ButtonMain>
-            <ButtonMain title="BACK TO DECK" onPress={(navigation) => navigation.goBack()} style={{ backgroundColor: '#77966d' }}></ButtonMain>
+            <ButtonMain title="BACK TO DECK" onPress={() => navigation.navigate('Deck', { "id": deckId })} style={{ backgroundColor: '#77966d' }}></ButtonMain>
           </ResultButtons>
         </ResultView>
       )    

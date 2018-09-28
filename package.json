@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "eject": "expo eject",
     "lint": "eslint ./src/** --fix",
-    "publish": "npm run lint && git add . && git commit -m \"Added Notification, Restart Quiz and Back to Deck Button\" && git push origin master"
+    "publish": "npm run lint && git add . && git commit -m \"Fixed Navigate back to Deck\" && git push origin master"
   },
   "dependencies": {
     "asyncstorage": "^1.5.0",
